@@ -23,6 +23,7 @@ const getUserById = async (req, res) => {
         workExp: workExpData
       }));
     } catch (error) {
+        console.log('Disturbed');
       res.status(500).json(errorHandler('Internal Server Error'));
     }
   };

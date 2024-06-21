@@ -1,12 +1,13 @@
 const admin = require('firebase-admin');
-const dotenv = require('dotenv');
-const path = require('path');
-dotenv.config();
+const { firebaseConfig } = require('./firebaseConfigs');
 
 
-const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
-admin.initializeApp({
-  credential: admin.credential.cert(require(path.resolve(serviceAccountPath)))
-});
+const config = {
+    credential: admin.credential.cert(firebaseConfig),
+    databaseURL: `https://${firebaseConfig.projectId}.firebaseio.com`
+  }
+admin.initializeApp(config);
+
 const database = admin.firestore();
+
 module.exports = { database };
