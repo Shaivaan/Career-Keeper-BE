@@ -2,7 +2,7 @@ const { database } = require('../config/firebase');
 const { errorHandler, successHandler } = require('../utils/util');
 
 const getUserById = async (req, res) => {
-    const { user_id } = req.body;
+    const { user_id } = req.query;
     if (!user_id) return res.status(400).json(errorHandler('User id is required'));
   
     try {
